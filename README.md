@@ -38,24 +38,8 @@ Develop a full-stack **Next.js 14** application that enables users to input a co
 
 #### 2. **AI Task Generation**
 
-* Use `ChatOpenAI` from `@langchain/openai`:
-
-  ```ts
-  const agentModel = process.env.OPENAI_API_KEY
-    ? new ChatOpenAI({ temperature: 0, model: "gpt-3.5-turbo" });
-  ```
-* In the `POST` API route:
-
-  * Accept JSON `{ content: string, threadId: string }`
-  * Invoke LLM:
-
-    ```ts
-    const agentResponse = await agent.invoke(
-      { messages: [new HumanMessage(content)] },
-      { configurable: { thread_id: threadId } }
-    );
-    ```
-  * The LLM **must return JSON** containing 3-5 tasks, structured as:
+* Use generateObject to easily generate and parse data using OpenAI `gpt-3.5-turbo`
+* The LLM **must return JSON** containing 3-5 tasks, structured as:
 
     ```json
     {
